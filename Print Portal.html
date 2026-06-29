@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Print Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="title">PRINT PORTAL</h1>
+
+    <div class="portal-container">
+
+        <div class="portal-item">
+            <img src="duck.png">
+            <input id="digit1" type="number" class="code-box">
+        </div>
+
+        <div class="portal-item">
+            <img src="book.jpg">
+            <input id="digit2" type="number" class="code-box">
+        </div>
+
+        <div class="portal-item">
+            <img src="candle.jpg">
+            <input id="digit3" type="number" class="code-box">
+        </div>
+
+        <div class="portal-item">
+            <img src="mug.webp">
+            <input id="digit4" type="number" class="code-box">
+        </div>
+
+    </div>
+
+<button class="submit-btn" onclick="validateCodes()">SUBMIT</button>
+
+        <p id="result-message" class="result-message"></p>
+
+    <script>
+        const correct = ["9", "5", "8", "2"];
+
+        function validateCodes() {
+            const boxes = [
+                document.getElementById("digit1"),
+                document.getElementById("digit2"),
+                document.getElementById("digit3"),
+                document.getElementById("digit4")
+            ];
+
+            const entered = boxes.map(b => b.value.trim());
+            const msg = document.getElementById("result-message");
+
+            // Reset styles
+            boxes.forEach(b => b.classList.remove("error"));
+
+            if (JSON.stringify(entered) === JSON.stringify(correct)) {
+                document.body.innerHTML = `
+                    <div class="success-message">
+                        <h1>ACCESS GRANTED</h1>
+                        <p>PID465394</p>
+                    </div>
+                `;
+            } else {
+                // Incorrect
+                msg.textContent = "Incorrect code, please try again";
+                msg.style.color = "red";
+
+                // Highlight boxes red
+                boxes.forEach(b => b.classList.add("error"));
+            }
+        }
+
+        document.querySelectorAll(".code-box").forEach(box => {
+            box.addEventListener("input", () => {
+                box.classList.remove("error");
+                document.getElementById("result-message").textContent = "";
+            });
+        });
+    </script>
+</body>
+
+<p class="igc-footer">Property of IGC Inc. — unauthorised use is strictly prohibited</p>
+
+</html>
