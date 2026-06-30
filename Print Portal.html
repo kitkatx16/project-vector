@@ -52,7 +52,6 @@
             const entered = boxes.map(b => b.value.trim());
             const msg = document.getElementById("result-message");
 
-            // Reset styles
             boxes.forEach(b => b.classList.remove("error"));
 
             if (JSON.stringify(entered) === JSON.stringify(correct)) {
@@ -63,11 +62,9 @@
                     </div>
                 `;
             } else {
-                // Incorrect
                 msg.textContent = "Incorrect code, please try again";
                 msg.style.color = "red";
 
-                // Highlight boxes red
                 boxes.forEach(b => b.classList.add("error"));
             }
         }
